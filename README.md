@@ -43,7 +43,7 @@ Notice that we're passing the `params[:author_id]` into `Post.new()`. We want to
 
 Now let's get into our author `show` template and add a link to the nested new post page for that author.
 
-```erb
+```ruby
 <!-- authors/show.html.erb -->
 
 <h1><%= @author.name %></h1>
@@ -60,7 +60,7 @@ Let's launch the app (don't forget to `rake db:seed`), browse to `/authors`, cli
 
 Something seems off. Where's our author? Looks like we didn't do a great job babysitting that `author_id`. We set it up in the `new` action, but it never made it to the view so that it could get submitted back to the server. Let's fix that. Open up the post form partial and add a hidden field for the `:author_id`.
 
-```erb
+```ruby
 <!-- posts/_form.html.erb -->
 
 <%= form_for(@post) do |f| %>
@@ -123,7 +123,7 @@ We don't have to change any views because `new` and `edit` both use the same `_f
 
 Now we need to update our post `show` view to give us the new nested link to edit the post for the author.
 
-```erb
+```ruby
 <!-- posts/show.html.erb -->
 
 <h1><%= @post.title %></h1>
@@ -213,7 +213,7 @@ But we've decided we want to be able to select an author at the time of posting 
 
 Since we're already set up to handle `author_id` on the controller, all we have to do is augment our `posts/_form.html.erb` partial to present a list of authors when none is present.
 
-```erb
+```ruby
 <!-- posts/_form.html.erb -->
 
 <%= form_for(@post) do |f| %>
@@ -244,7 +244,7 @@ end
 
 And back in our form partial:
 
-```erb
+```ruby
 <!-- posts/_form.html.erb -->
 
 <%= form_for(@post) do |f| %>
